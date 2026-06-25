@@ -1,0 +1,23 @@
+{
+  "name": "api-testing-playwright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mihiragrawal1/API-Testing-Playwright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mihiragrawal1/API-Testing-Playwright/issues"
+  },
+  "homepage": "https://github.com/mihiragrawal1/API-Testing-Playwright#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.0.0"
+  }
+}
