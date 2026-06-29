@@ -12,7 +12,7 @@ test.beforeAll(async ({request}) => {
     extractedToken = respJson.token;
 });
 
-test('validate get event api return success as true and events data in response when valid token and query params are passed - positive scenario', async ({request}) => {
+test('validate get event api return success as true and empty event data in response when valid token and query params are passed - positive scenario', async ({request}) => {
 const apicalls=new EventApiCalls(request);
 const reponse = await apicalls.getEventApiCall(extractedToken,getEventApiPayload);
 await expect(reponse.status()).toBe(200);
@@ -21,5 +21,19 @@ await expect(respJson).toHaveProperty('success');
 await expect(respJson.success).toBe(true);
 await expect(respJson).toHaveProperty('data');
 await expect(respJson.data.length).toBe(0);
+
+})
+
+
+test('validate get event api return success as false and error in response when invalid token is passed - negative scenario', async ({request}) => {
+const apicalls=new EventApiCalls(request);
+console.log(extractedToken+"invalid");
+const reponse = await apicalls.getEventApiCall(extractedToken+"invalid",getEventApiPayload);
+await expect(reponse.status()).toBe(401);
+const respJson=await reponse.json();
+await expect(respJson).toHaveProperty('success');
+await expect(respJson.success).toBe(false);
+await expect(respJson).toHaveProperty('error');
+await expect(respJson.error).toBe("Invalid or expired token");
 
 })

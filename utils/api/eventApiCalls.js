@@ -26,4 +26,25 @@ export class EventApiCalls {
     });
    }
    
+   async createNewEvent(token,requestPayload){
+
+    return await this.request.post(`${url.qaBaseURL}/events`, {
+      data:requestPayload,
+      headers: {
+        'Authorization' : 'Bearer ' + token
+      }
+    })
+   }
+
+   async deleteEventApiCall(token,eventID){
+    return await this.request.delete(`${url.qaBaseURL}/events/${eventID}`, {
+      headers: {
+        'accept' : 'application/json',
+        'Authorization' : 'Bearer ' + token
+      },
+      
+    });
+   }
+
+  
 }
