@@ -1,13 +1,13 @@
 import {test,expect,request} from '@playwright/test';
-import{registerUserApiPayload,newEventData,invalidEventId} from '../test-data/eventApiRequestData';
-import {EventApiCalls} from '../utils/api/eventApiCalls';
+import{registerUserApiPayload,newEventData,invalidEventId} from '../../test-data/eventApiRequestData';
+import {EventApiCalls} from '../../utils/api/eventApiCalls';
 
 let extractedToken;
 let createdEventId;
 
 test.beforeAll('Setup for delete event API tests', async ({request}) => {
     const apicalls=new EventApiCalls(request);
-    const response = await apicalls.registerNewUser(registerUserApiPayload);
+    const response = await apicalls.registerNewUser(registerUserApiPayload());
     await expect(response.status()).toBe(201);
     const respJson=await response.json();   
     extractedToken = respJson.token;
@@ -40,5 +40,5 @@ test('validate delete event api return success as false  when invalid event id i
  await expect (deleteEventRespJson).toHaveProperty('error');
  await expect(deleteEventRespJson.error).toContain("not found");
 
-
 })
+

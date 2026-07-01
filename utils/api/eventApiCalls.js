@@ -12,8 +12,8 @@ export class EventApiCalls {
         'Content-Type': 'application/json',
         'accept' : 'application/json'
       }
-    });
-   }
+    }
+  )}
 
    async getEventApiCall(token,qParam){
     return await this.request.get(`${url.qaBaseURL}/events`, {
@@ -46,5 +46,38 @@ export class EventApiCalls {
     });
    }
 
+   async createBookingApiCall(token,eventID,bookingDetails){
+    return await this.request.post(`${url.qaBaseURL}/bookings`, {
+      data:{
+        "eventId": eventID,
+        ...bookingDetails
+
+      },
+      headers:{
+        accept : 'application/json',
+        contentType : 'application/json',
+        Authorization : 'Bearer ' + token 
+      }
+    })
+   }
+
+   async getBookingDetailsApiCall(token,eventID){
+    return await this.request.get(`${url.qaBaseURL}/events/bookings`, {
+      headers:{
+        accept : 'application/json'
+      },
+      params:{
+        eventId : eventID,
+        page: 1,
+        limit: 10,
+        status: 'confirmed'
+      }
+    })
+    }
+
+
+
+
+      
   
 }

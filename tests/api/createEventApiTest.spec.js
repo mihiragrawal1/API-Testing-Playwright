@@ -1,12 +1,12 @@
 import {test,expect} from '@playwright/test';
-import { registerUserApiPayload,newEventData, newEventInvalidData } from '../test-data/eventApiRequestData';
-import { EventApiCalls } from '../utils/api/eventApiCalls';
+import { registerUserApiPayload,newEventData, newEventInvalidData } from '../../test-data/eventApiRequestData';
+import { EventApiCalls } from '../../utils/api/eventApiCalls';
 
 let extractedToken; 
 
 test.beforeAll(async ({request}) => {
     const apiCalls = new EventApiCalls(request);
-    const response = await apiCalls.registerNewUser(registerUserApiPayload);    
+    const response = await apiCalls.registerNewUser(registerUserApiPayload());    
     const respJson=await response.json();
     await expect(response.status()).toBe(201);
     extractedToken = respJson.token;

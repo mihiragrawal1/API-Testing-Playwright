@@ -1,7 +1,7 @@
-export const  registerUserApiPayload = {
-    email: `test${Math.floor(Math.random() * 1000)}@example.com`,
+export const  registerUserApiPayload = () => ({
+    email: `Testmail${Math.floor(Math.random() * 1000)}@example.com`,
     password: "pistol321"
-}
+});
 
 export const  registerUserApiInvalidPayload = {
     email: `test${Math.floor(Math.random() * 1000)}@xyz.com`,
@@ -41,3 +41,11 @@ export const newEventInvalidData={
 }
 
 export const invalidEventId=679
+
+export const createBookingDetails={
+  "customerName": "Priya Sharma",
+  "customerEmail": "priya.sharma@email.com",
+  "customerPhone": "+91-9876543210",
+  "quantity": 2
+
+}
